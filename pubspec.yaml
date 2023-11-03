@@ -1,0 +1,31 @@
+name: weather_app_with_api
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.2.0-210.2.beta <4.0.0'
+
+dependencies:
+  blur: ^3.1.0
+  dio: ^5.3.3
+  flutter:
+    sdk: flutter
+  http: ^1.1.0
+  slider_button: ^2.0.0
+  svg_flutter: ^0.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+    
