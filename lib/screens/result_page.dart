@@ -99,6 +99,7 @@ class _ResultPageState extends State<ResultPage> {
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: ListTile(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         tileColor: Colors.grey.shade300,
         title: Text(
           category,
