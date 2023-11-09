@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:svg_flutter/svg.dart';
+import 'package:image_network/image_network.dart';
 
 class ResultPage extends StatefulWidget {
   final String cityName;
   final String main;
   final String description;
   final double temp;
-  final double feelsLike;
   final double tempMin;
   final double tempMax;
   final int pressure;
@@ -18,7 +17,6 @@ class ResultPage extends StatefulWidget {
       required this.main,
       required this.description,
       required this.temp,
-      required this.feelsLike,
       required this.tempMin,
       required this.tempMax,
       required this.pressure,
@@ -47,12 +45,22 @@ class _ResultPageState extends State<ResultPage> {
                   widget.cityName.toUpperCase(),
                   style: const TextStyle(color: Colors.white, fontSize: 20),
                 ),
-                SvgPicture.asset(
-                  'assets/images/weather.svg',
-                  width: 200,
+                const SizedBox(height: 8),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(13),
+                  ),
+                  child: ImageNetwork(
+                      fitAndroidIos: BoxFit.cover,
+                      image:
+                          'https://openweathermap.org/img/wn/${widget.icon}@2x.png',
+                      height: 100,
+                      width: 100),
                 ),
+                const SizedBox(height: 8),
                 Text(
-                  '${((widget.temp - 32) / 1.8).toStringAsFixed(2)}°C',
+                  '${widget.temp}',
                   style: const TextStyle(
                       color: Colors.white,
                       fontSize: 50,
@@ -70,23 +78,15 @@ class _ResultPageState extends State<ResultPage> {
                 const SizedBox(height: 8),
                 createListtile('Description', widget.description),
                 const SizedBox(height: 8),
-                createListtile('Feels like',
-                    ((widget.feelsLike - 32) / 1.8).toStringAsFixed(2)),
+                createListtile('Minimum Temperature', widget.tempMin),
                 const SizedBox(height: 8),
-                createListtile('Minimum Temperature',
-                    ((widget.tempMin - 32) / 1.8).toStringAsFixed(2)),
+                createListtile('Max Temperature', widget.tempMax - 32),
                 const SizedBox(height: 8),
-                createListtile('Max Temperature',
-                    ((widget.tempMax - 32) / 1.8).toStringAsFixed(2)),
+                createListtile('Humidity', widget.humidity),
                 const SizedBox(height: 8),
-                createListtile('Humidity',
-                    ((widget.humidity - 32) / 1.8).toStringAsFixed(2)),
+                createListtile('Pressure', widget.pressure),
                 const SizedBox(height: 8),
-                createListtile('Pressure',
-                    ((widget.pressure - 32) / 1.8).toStringAsFixed(2)),
-                const SizedBox(height: 8),
-                createListtile('Wind Speed',
-                    ((widget.windSpeed - 32) / 1.8).toStringAsFixed(2)),
+                createListtile('Wind Speed', widget.windSpeed),
               ],
             ),
           ),

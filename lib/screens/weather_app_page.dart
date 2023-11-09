@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:svg_flutter/svg.dart';
-import 'package:slider_button/slider_button.dart';
 import 'package:weather_app_with_api/screens/city_search_page.dart';
+import 'package:page_transition/page_transition.dart';
 
 class WeatherAppPage extends StatefulWidget {
   const WeatherAppPage({super.key});
@@ -36,21 +36,28 @@ class _WeatherAppPageState extends State<WeatherAppPage> {
             const SizedBox(
               height: 45,
             ),
-            SliderButton(
-              action: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const CitySearchPage()));
-              },
-              label: const Text(
-                'Turn to the right',
-                style: TextStyle(
-                    color: Color(0xff4a4a4a),
-                    fontWeight: FontWeight.w500,
-                    fontSize: 17),
-              ),
-              icon: const Icon(Icons.arrow_forward_ios_rounded),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.7,
+              height: 55,
+              child: ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20))),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            child: const CitySearchPage(),
+                            type: PageTransitionType.bottomToTop));
+                  },
+                  icon: const Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    color: Colors.black,
+                  ),
+                  label: const Text(
+                    'Get Started',
+                    style: TextStyle(color: Colors.black),
+                  )),
             ),
           ],
         ),

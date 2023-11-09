@@ -34,7 +34,6 @@ Future<void> fetchData() async {
     desc = jsonData['weather'][0]['description'];
     icon = jsonData['weather'][0]['icon'];
     temp = jsonData['main']['temp'];
-    feelsLike = jsonData['main']['feels_like'];
     tempMin = jsonData['main']['temp_min'];
     tempMax = jsonData['main']['temp_max'];
     pressure = jsonData['main']['pressure'];
@@ -50,6 +49,7 @@ class _CitySearchPageState extends State<CitySearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(11, 18, 30, 1),
+      appBar: appBar(context),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Center(
@@ -102,7 +102,6 @@ class _CitySearchPageState extends State<CitySearchPage> {
                       cityName: selectedCity,
                       main: esas,
                       description: desc,
-                      feelsLike: feelsLike,
                       humidity: humidity,
                       icon: icon,
                       pressure: pressure,
@@ -129,6 +128,25 @@ class _CitySearchPageState extends State<CitySearchPage> {
           borderSide: BorderSide.none,
         ),
       ),
+    );
+  }
+
+  AppBar appBar(BuildContext context) {
+    return AppBar(
+      leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios_new,
+            color: Colors.white,
+          )),
+      backgroundColor: const Color.fromRGBO(11, 18, 30, 1),
+      title: const Text(
+        'Air Conditions',
+        style: TextStyle(color: Colors.white),
+      ),
+      centerTitle: true,
     );
   }
 }
